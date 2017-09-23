@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+@media screen and (max-width: 600px) {
+  body {
+    width: 100vw; }
+
+  #wrapper {
+    width: 100vw; } }
+aside {
+  position: relative; }
+
+.week-forecast {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.week-forecast__icon {
+  height: 40%; }
+
+.week-forecast__temp {
+  height: 30%; }
+
+.week-forecast__day {
+  height: 30%; }
+
+aside::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  bottom: 10px;
+  left: 5%;
+  border-top: 0.1em solid #ccc; }
+
+header {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#header__city-name {
+  font-size: 2em;
+  padding-top: 2vh; }
+
+#header__author, #header__author-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7em; }
+
+body, html {
+  height: 100vh;
+  padding: 0;
+  margin: 0; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#wrapper, main, #main__temp, #main__icon, #main__additional-info, aside {
+  display: flex; }
+
+#main__additional-info, aside {
+  flex-direction: row; }
+
+#wrapper, main, #main__icon {
+  flex-direction: column; }
+
+#main__temp, #main__icon {
+  justify-content: center;
+  align-items: center; }
+
+#wrapper {
+  width: 600px;
+  height: 100vh;
+  background-size: cover; }
+
+main {
+  width: 100%;
+  height: 60%; }
+
+#main__temp {
+  height: 60%; }
+  #main__temp #temp {
+    font-size: 4.2em; }
+  #main__temp span {
+    font-size: 1.8em;
+    height: 2em; }
+
+#main__icon {
+  height: 30%; }
+  #main__icon #summary {
+    padding-bottom: 2em;
+    font-weight: 600; }
+
+#main__additional-info {
+  height: 10%; }
+  #main__additional-info div {
+    width: 50%;
+    height: 100%;
+    text-align: center; }
+  #main__additional-info span {
+    font-size: 0.9em; }
+
+aside {
+  width: 100%;
+  height: 20%; }
+
+.black {
+  color: #111; }
+
+/*# sourceMappingURL=style.css.map */

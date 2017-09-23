@@ -1,0 +1,33 @@
+//weekly forecast styling
+aside {
+    position: relative;
+}
+.week-forecast {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.week-forecast__icon {
+    height: 40%;
+}
+
+.week-forecast__temp {
+    height: 30%;
+}
+
+.week-forecast__day {
+    height: 30%;
+}
+
+aside::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    bottom: 10px;
+    left: 5%;
+    border-top: 0.1em solid #ccc;
+
+}

@@ -6,36 +6,65 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="skycons.js"></script>
 		
  	</head>
 
 	<body>
 		<div id="wrapper">
+
 			<header>
 				<div id="header__city-name"></div>
-				<span id="header__author"></span>
+				<span id="header__author">Designed by Andrew Bedziak</span>
+				<span id="header__author-icon"><i></i></span>
 			</header>
+
 			<main role="main">
+
 				<section id="main__temp">
-					<div id="temp"></div>
+					<div id="temp"></div><span>º</span>		
 				</section>
+
 				<section id="main__icon">
 					<div id="icon"></div>
 					<div id="summary"></div>
 				</section>
+
 				<section id="main__additional-info">
-					<div id="add-wind"></div>
-					<div id="add-pressure"></div>
+					<div></div>
+					<div></div>
 				</section>
+
 			</main>
-			<aside id="bottom-forecast">
-				<div class="weekly"></div>
-				<div class="weekly"></div>
-				<div class="weekly"></div>
-				<div class="weekly"></div>
+
+			<aside>
+
+				<div class="week-forecast">
+					<div class="week-forecast__icon"></div>
+					<div class="week-forecast__temp"></div>
+					<div class="week-forecast__day"></div>
+				</div>
+				<div class="week-forecast">
+					<div class="week-forecast__icon"></div>
+					<div class="week-forecast__temp"></div>
+					<div class="week-forecast__day"></div>
+				</div>
+				<div class="week-forecast">
+					<div class="week-forecast__icon"></div>
+					<div class="week-forecast__temp"></div>
+					<div class="week-forecast__day"></div>
+				</div>
+				<div class="week-forecast">
+					<div class="week-forecast__temp"></div>
+					<div class="week-forecast__icon"></div>
+					<div class="week-forecast__day"></div>
+				</div>
+
 			</aside>
 		</div>
+
 		<script src="script.js"></script>
+
 	</body>
 </html>
