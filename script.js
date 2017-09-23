@@ -87,7 +87,9 @@ function getData(request) {
 		if (request.status >= 200 && request.status <= 400) {
 			displayCurrentWeather(newWeather);
 			setWeatherData(newWeather);
+			
 			dailyWeather(newWeather);
+			setDailyWeather(newWeather);
 			// setBackground(newWeather);
 		} else {
 			console.log("error");
@@ -189,6 +191,48 @@ function setWeatherData (data) {
 			break;
 	}
 }
+
+
+//function to set icons in DAILY forecast //
+
+function setDailyWeather (dayWeather) {
+		console.log(dayWeather.daily.data[1].icon)
+		for (var i = 0; i < weeklyForecast.length; i++) {
+			switch (dayWeather.daily.data[i+1].icon) {
+				case "clear-day" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[7] + "'>" ;
+					break;
+				case "clear-night" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[6] + "'>" ;
+					break;
+				case "rain" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[3] + "'>" ;
+					break;
+				case "snow" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[4] + "'>" ;
+					break;
+				case "sleet" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[0] + "'>" ;
+					break;
+				case "wind" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[8] + "'>" ;
+					break;
+				case "fog" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[1] + "'>" ;
+					break;
+				case "cloudy" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[0] + "'>" ;
+					break;
+				case "partly-cloudy-day" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[5] + "'>" ;
+					break;
+				case "partly-cloudy-night" :
+					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[2] + "'>" ;
+					break;
+			}
+		}
+		
+	}
 
 
 
