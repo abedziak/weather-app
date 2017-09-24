@@ -212,7 +212,18 @@ function setWeatherData (data) {
 			break;
 	}
 }
-
+var skyconsList = [
+	"Skycons.PARTLY_CLEAR_DAY",
+	"Skycons.PARTLY_CLEAR_NIGHT",
+	"Skycons.RAIN",
+	"Skycons.SNOW",
+	"Skycons.SLEET",
+	"Skycons.WIND",
+	"Skycons.FOG",
+	"Skycons.CLOUDY",
+	"Skycons.PARTLY_CLOUDY_DAY",
+	"Skycons.PARTLY_CLOUDY_NIGHT"
+]
 
 //function to set icons in DAILY forecast //
 var skyconId = "skycon_small";
