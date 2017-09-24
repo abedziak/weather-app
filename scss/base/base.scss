@@ -65,6 +65,7 @@ main {
     }
 
     #summary {
+        padding-top: 1em;
         padding-bottom: 2em; 
         font-weight: 600;
     }
@@ -94,5 +95,9 @@ aside {
 
 .black {
     color: $black;
+}
+
+svg path{
+    fill: #fff;
 }
 

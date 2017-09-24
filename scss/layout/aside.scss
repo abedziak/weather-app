@@ -24,10 +24,10 @@ aside {
 aside::before {
     content: "";
     position: absolute;
-    width: 90%;
+    width: 80%;
     height: 100%;
     bottom: 10px;
-    left: 5%;
-    border-top: 0.1em solid #ccc;
+    left: 10%;
+    border-top: 0.04em solid #ccc;
 
 }

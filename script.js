@@ -27,6 +27,26 @@ var icons = [
 	"Wind.svg"
 ]
 
+// SKYCONS 
+
+var iconsWhite = new Skycons({"color": "white"});
+var iconsBlack = new Skycons({"color": "black"});
+
+// var list = [
+// 	"clear-day",
+// 	"clear-night",
+// 	"partly-cloudy-day",
+// 	"partly-cloudy-night",
+// 	"cloudy",
+// 	"rain",
+// 	"sleet",
+// 	"snow",
+// 	"wind",
+// 	"fog"
+//    ],
+
+iconsWhite.play();
+
 // Function to get geolocation and check if supported
 
 function getLocation () {
@@ -89,7 +109,7 @@ function getData(request) {
 			setWeatherData(newWeather);
 			
 			dailyWeather(newWeather);
-			setDailyWeather(newWeather);
+			// setDailyWeather(newWeather);
 			// setBackground(newWeather);
 		} else {
 			console.log("error");
@@ -132,6 +152,7 @@ function dailyWeather(dailyWeather) {
 }
 
 
+
 //function to set different backgrounds, summary and icons depending on weather 
 	// have set default icons
 
@@ -140,53 +161,53 @@ function setWeatherData (data) {
 	switch (data.currently.icon) {
 		case "clear-day" :
 			wrapper.style.backgroundImage = "url('img/background/clear-day.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[7] + "'>" ;
+			iconsWhite.set("skycon", Skycons.CLEAR_DAY);	
 			summary.innerHTML = "Clear Day";
 			wrapper.classList.add("black");
 			break;
 		case "clear-night" :
 			wrapper.style.backgroundImage = "url('img/background/clear-night.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[6] + "'>" ;
+			iconsWhite.set("skycon", Skycons.CLEAR_NIGHT);	
 			summary.innerHTML = "Clear Night";
 			break;
 		case "rain" :
 			wrapper.style.backgroundImage = "url('img/background/rain.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[3] + "'>" ;
+			iconsWhite.set("skycon", Skycons.RAIN);	
 			summary.innerHTML = "Rainy";
 			break;
 		case "snow" :
 			wrapper.style.backgroundImage = "url('img/background/snow.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[4] + "'>" ;
+			iconsWhite.set("skycon", Skycons.SNOW);	
 			summary.innerHTML = "Snowing";
 			break;
 		case "sleet" :
 			wrapper.style.backgroundImage = "url('img/background/sleet.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[0] + "'>" ;
+			iconsWhite.set("skycon", Skycons.SLEET);	
 			summary.innerHTML = "Clear Day";
 			break;
 		case "wind" :
 			wrapper.style.backgroundImage = "url('img/background/wind.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[8] + "'>" ;
+			iconsWhite.set("skycon", Skycons.WIND);	
 			summary.innerHTML = "Windy";
 			break;
 		case "fog" :
 			wrapper.style.backgroundImage = "url('img/background/fog.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[1] + "'>" ;
+			iconsWhite.set("skycon", Skycons.FOG);	
 			summary.innerHTML = "Foggy";
 			break;
 		case "cloudy" :
 			wrapper.style.backgroundImage = "url('img/background/cloudy.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[0] + "'>" ;
+			iconsWhite.set("skycon", Skycons.CLOUDY);	
 			summary.innerHTML = "cloudy";
 			break;
 		case "partly-cloudy-day" :
 			wrapper.style.backgroundImage = "url('img/background/partly-cloudy-day.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[5] + "'>" ;
+			iconsWhite.set("skycon", Skycons.PARTLY_CLOUDY_DAY);	
 			summary.innerHTML = "Partly Cloudy";
 			break;
 		case "partly-cloudy-night" :
 			wrapper.style.backgroundImage = "url('img/background/partly-cloudy-night.jpg')";
-			icon.innerHTML = "<img src='img/" + icons[2] + "'>" ;
+			iconsWhite.set("skycon", Skycons.PARTLY_CLOUDY_NIGHT);			
 			summary.innerHTML = "Partly Cloudy";
 			break;
 	}
@@ -194,40 +215,42 @@ function setWeatherData (data) {
 
 
 //function to set icons in DAILY forecast //
+var skyconId = "skycon_small";
+var s = document.querySelectorAll("#skycon_small");
 
 function setDailyWeather (dayWeather) {
 		console.log(dayWeather.daily.data[1].icon)
-		for (var i = 0; i < weeklyForecast.length; i++) {
+		for (var i = 0; i < s.length; i++) {
 			switch (dayWeather.daily.data[i+1].icon) {
 				case "clear-day" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[7] + "'>" ;
+					iconsBlack.set(s[i], Skycons.PARTLY_CLEAR_DAY);
 					break;
 				case "clear-night" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[6] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.PARTLY_CLEAR_NIGHT);
 					break;
 				case "rain" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[3] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.RAIN);
 					break;
 				case "snow" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[4] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.SNOW);
 					break;
 				case "sleet" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[0] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.SLEET);
 					break;
 				case "wind" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[8] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.WIND);
 					break;
 				case "fog" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[1] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.FOG);
 					break;
 				case "cloudy" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[0] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.CLOUDY);
 					break;
 				case "partly-cloudy-day" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[5] + "'>" ;
+					iconsWhite.set("skycon_small", Skycons.PARTLY_CLOUDY_DAY);
 					break;
 				case "partly-cloudy-night" :
-					weeklyForecastIcon[i].innerHTML = "<img src='img/" + icons[2] + "'>" ;
+					iconsWhite.set(skyconId[i], Skycons.PARTLY_CLOUDY_NIGHT);
 					break;
 			}
 		}
