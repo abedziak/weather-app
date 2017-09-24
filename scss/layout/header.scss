@@ -16,7 +16,7 @@ header {
 
     #header__author, #header__author-icon {
         position: absolute;
-        top: 0;
+        top: 0.1em;
         right: 0;
         font-size: 0.7em;
         padding-right: 1em;
@@ -31,7 +31,7 @@ header {
     }
 
     a {
-        color: black;
+        color: inherit;
     }
 }
 
