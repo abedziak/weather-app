@@ -11,43 +11,17 @@ var cityName = document.querySelector("#header__city-name"),
 	weeklyForecastIcon = document.querySelectorAll(".week-forecast__icon"),
 	weeklyForecastTemp = document.querySelectorAll(".week-forecast__temp"),
 	weeklyForecastDay = document.querySelectorAll(".week-forecast__day"),
+	skyconIcon = document.querySelectorAll("#skycon_small"),
+	currentDate = document.querySelector("#current-date");
 	wrapper = document.querySelector("#wrapper");
-
-// icons array
-
-var icons = [
-	"Cloud.svg",
-	"cloud-Fog-Sun-Alt.svg",
-	"Cloud-Moon.svg",
-	"Cloud-Rain.svg",
-	"Cloud-Snow.svg",
-	"Cloud-Sun.svg",
-	"Moon.svg",
-	"Sun.svg",
-	"Wind.svg"
-]
 
 // SKYCONS 
 
-var iconsWhite = new Skycons({"color": "white"});
-var iconsBlack = new Skycons({"color": "black"});
+var skycons = new Skycons({"color": "white"});
 
-// var list = [
-// 	"clear-day",
-// 	"clear-night",
-// 	"partly-cloudy-day",
-// 	"partly-cloudy-night",
-// 	"cloudy",
-// 	"rain",
-// 	"sleet",
-// 	"snow",
-// 	"wind",
-// 	"fog"
-//    ],
+skycons.play();
 
-iconsWhite.play();
-
-// Function to get geolocation and check if supported
+// Functions to get geolocation and check if supported
 
 function getLocation () {
 
@@ -93,7 +67,46 @@ function getWeather(position) {
 	}
 
 	newRequest.send();	
-	// console.log(URL);
+}
+
+// second ajax call to get geocode location
+
+function geocode(position) {
+	
+		var lat = position.coords.latitude;
+		var lon = position.coords.longitude;
+	
+		var request = new XMLHttpRequest();
+		var method = "GET";
+		var URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ lat + "," + lon + "&key=AIzaSyB4jBtDnM420ai_Bmg8lNnhoRZAn9B3sdc";
+	
+		request.open(method, URL);
+		request.responseType = "json";
+		
+		getLoc(request)
+		
+		request.onerror = function() {
+			console.log("error");
+		}
+	
+		request.send();	
+}
+	
+function getLoc(myRequest) {
+	myRequest.onload = function() {
+		var myLocation = myRequest.response;
+	
+		// check if data load is successful
+		if (myRequest.status >= 200 && myRequest.status <= 400) {
+			// console.log(myLocation.results[0].address_components[3].long_name);
+
+			//display city name in HTML
+			cityName.innerHTML = myLocation.results[0].address_components[3].long_name;
+		} else {
+			console.log("error");
+		}		
+	}
+		
 }
 
 // function to load data from DARK SKY API
@@ -104,13 +117,13 @@ function getData(request) {
 		var newWeather = request.response;
 
 		// check if data load is successful
+
 		if (request.status >= 200 && request.status <= 400) {
 			displayCurrentWeather(newWeather);
 			setWeatherData(newWeather);
 			
 			dailyWeather(newWeather);
-			// setDailyWeather(newWeather);
-			// setBackground(newWeather);
+			setDailyIcons(newWeather);
 		} else {
 			console.log("error");
 		}		
@@ -120,38 +133,44 @@ function getData(request) {
 // function to display data to HTML
 
 function displayCurrentWeather(weather) {
-	// console.log(weather.daily, weather.currently);
-	// cityName.innerHTML = weather.timezone;
+
 	temperature.innerHTML = Math.floor(weather.currently.temperature);
 	wind.innerHTML = "<span>Wind: </span><strong>" + weather.currently.windSpeed + "</strong> mph";
 	pressure.innerHTML = "<span>Pressure: </span><strong>" + Math.floor(weather.currently.pressure) + " </strong>mbar";
+	var d = new Date();
+	var day = new Array(7);
+	day[0] = "Sun";
+	day[1] = "Mon";
+	day[2] = "Tues";
+	day[3] = "Wed";
+	day[4] = "Thur";
+	day[5] = "Fri";
+	day[6] = "Sat";
+	var newDay = day[d.getDay()];
+	currentDate.innerHTML = newDay;
 						
 }
 
-// function showTemperature (data) {
-	
-// }
+// SET DAILY WEATHER DATA 
 
 function dailyWeather(dailyWeather) {
-	
-	// var d = new Date(a);
-	// console.log(d);
-	console.log(dailyWeather.daily.data);
 
 	for (var i = 0; i < weeklyForecast.length; i++) {
-		// for (var x = 1; x < dailyWeather.daily.data.length; x++) {
-			var a = dailyWeather.daily.data[i+1].time * 1000;
-			var d = new Date(a).getDay();
-			// weeklyForecast[i].innerHTML = dailyWeather.daily.data[i+1].time;
-			
-			weeklyForecastIcon[i].innerHTML = dailyWeather.daily.data[i+1].icon;
-			weeklyForecastTemp[i].innerHTML = Math.round(dailyWeather.daily.data[i+1].temperatureHigh) + "º" + "/" + Math.round(dailyWeather.daily.data[i+1].temperatureLow) + "º";
-			weeklyForecastDay[i].innerHTML = d;
-		
+			var time = dailyWeather.daily.data[i+1].time * 1000;
+			var d = new Date(time);
+			var day = new Array(7);
+			day[0] = "Sun";
+			day[1] = "Mon";
+			day[2] = "Tues";
+			day[3] = "Wed";
+			day[4] = "Thur";
+			day[5] = "Fri";
+			day[6] = "Sat";
+			var newDay = day[d.getDay()];
+			weeklyForecastTemp[i].innerHTML = Math.round(dailyWeather.daily.data[i+1].temperatureHigh) + "º" + " / " + Math.round(dailyWeather.daily.data[i+1].temperatureLow) + "º";
+			weeklyForecastDay[i].innerHTML = newDay;	
 	}
 }
-
-
 
 //function to set different backgrounds, summary and icons depending on weather 
 	// have set default icons
@@ -161,154 +180,154 @@ function setWeatherData (data) {
 	switch (data.currently.icon) {
 		case "clear-day" :
 			wrapper.style.backgroundImage = "url('img/background/clear-day.jpg')";
-			iconsWhite.set("skycon", Skycons.CLEAR_DAY);	
+			skycons.set("skycon", Skycons.CLEAR_DAY);	
+			skycons.color = "black";
 			summary.innerHTML = "Clear Day";
 			wrapper.classList.add("black");
+			for (var i = 0; i < skyconIcon.length; i++) {
+					for (var x = 0; x < data.daily.data.length; x++ ) {
+						skycons.color = "black";
+					}
+				}						
 			break;
 		case "clear-night" :
 			wrapper.style.backgroundImage = "url('img/background/clear-night.jpg')";
 			iconsWhite.set("skycon", Skycons.CLEAR_NIGHT);	
 			summary.innerHTML = "Clear Night";
+			wrapper.classList.add("white");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "white";
+				}
+			}	
 			break;
 		case "rain" :
 			wrapper.style.backgroundImage = "url('img/background/rain.jpg')";
-			iconsWhite.set("skycon", Skycons.RAIN);	
+			iconsBlack.set("skycon", Skycons.RAIN);	
 			summary.innerHTML = "Rainy";
+			wrapper.classList.add("black");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "black";
+				}
+			}	
 			break;
 		case "snow" :
 			wrapper.style.backgroundImage = "url('img/background/snow.jpg')";
-			iconsWhite.set("skycon", Skycons.SNOW);	
+			iconsBlack.set("skycon", Skycons.SNOW);	
 			summary.innerHTML = "Snowing";
+			wrapper.classList.add("black");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "black";
+				}
+			}	
 			break;
 		case "sleet" :
 			wrapper.style.backgroundImage = "url('img/background/sleet.jpg')";
 			iconsWhite.set("skycon", Skycons.SLEET);	
 			summary.innerHTML = "Clear Day";
+			wrapper.classList.add("white");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "white";
+				}
+			}	
 			break;
 		case "wind" :
 			wrapper.style.backgroundImage = "url('img/background/wind.jpg')";
 			iconsWhite.set("skycon", Skycons.WIND);	
 			summary.innerHTML = "Windy";
+			wrapper.classList.add("white");
 			break;
 		case "fog" :
 			wrapper.style.backgroundImage = "url('img/background/fog.jpg')";
-			iconsWhite.set("skycon", Skycons.FOG);	
+			iconsBlack.set("skycon", Skycons.FOG);	
 			summary.innerHTML = "Foggy";
+			wrapper.classList.add("black");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "black";
+				}
+			}	
 			break;
 		case "cloudy" :
 			wrapper.style.backgroundImage = "url('img/background/cloudy.jpg')";
-			iconsWhite.set("skycon", Skycons.CLOUDY);	
+			iconsBlack.set("skycon", Skycons.CLOUDY);	
 			summary.innerHTML = "cloudy";
+			wrapper.classList.add("black");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "black";
+				}
+			}	
 			break;
 		case "partly-cloudy-day" :
 			wrapper.style.backgroundImage = "url('img/background/partly-cloudy-day.jpg')";
 			iconsWhite.set("skycon", Skycons.PARTLY_CLOUDY_DAY);	
 			summary.innerHTML = "Partly Cloudy";
+			wrapper.classList.add("white");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "white";
+				}
+			}	
 			break;
 		case "partly-cloudy-night" :
 			wrapper.style.backgroundImage = "url('img/background/partly-cloudy-night.jpg')";
 			iconsWhite.set("skycon", Skycons.PARTLY_CLOUDY_NIGHT);			
 			summary.innerHTML = "Partly Cloudy";
+			wrapper.classList.add("white");
+			for (var i = 0; i < skyconIcon.length; i++) {
+				for (var x = 0; x < data.daily.data.length; x++ ) {
+					skycons.color = "white";
+				}
+			}	
 			break;
 	}
 }
-var skyconsList = [
-	"Skycons.PARTLY_CLEAR_DAY",
-	"Skycons.PARTLY_CLEAR_NIGHT",
-	"Skycons.RAIN",
-	"Skycons.SNOW",
-	"Skycons.SLEET",
-	"Skycons.WIND",
-	"Skycons.FOG",
-	"Skycons.CLOUDY",
-	"Skycons.PARTLY_CLOUDY_DAY",
-	"Skycons.PARTLY_CLOUDY_NIGHT"
-]
 
 //function to set icons in DAILY forecast //
-var skyconId = "skycon_small";
-var s = document.querySelectorAll("#skycon_small");
 
-function setDailyWeather (dayWeather) {
-		console.log(dayWeather.daily.data[1].icon)
-		for (var i = 0; i < s.length; i++) {
+function setDailyIcons (dayWeather) {
+		// console.log(dayWeather.daily.data)
+		for (var i = 0; i < skyconIcon.length; i++) {
 			switch (dayWeather.daily.data[i+1].icon) {
 				case "clear-day" :
-					iconsBlack.set(s[i], Skycons.PARTLY_CLEAR_DAY);
-					break;
+					skycons.set(skyconIcon[i], Skycons.PARTLY_CLEAR_NIGHT);
+					break;				
 				case "clear-night" :
-					iconsWhite.set("skycon_small", Skycons.PARTLY_CLEAR_NIGHT);
+					skycons.set(skyconIcon[i], Skycons.PARTLY_CLEAR_NIGHT);
 					break;
 				case "rain" :
-					iconsWhite.set("skycon_small", Skycons.RAIN);
-					break;
+					skycons.set(skyconIcon[i], Skycons.RAIN);
+					break;					
 				case "snow" :
-					iconsWhite.set("skycon_small", Skycons.SNOW);
+					skycons.set(skyconIcon[i], Skycons.SNOW);
 					break;
 				case "sleet" :
-					iconsWhite.set("skycon_small", Skycons.SLEET);
+					skycons.set(skyconIcon[i], Skycons.SLEET);
 					break;
 				case "wind" :
-					iconsWhite.set("skycon_small", Skycons.WIND);
+					skycons.set(skyconIcon[i], Skycons.WIND);
 					break;
 				case "fog" :
-					iconsWhite.set("skycon_small", Skycons.FOG);
+					skycons.set(skyconIcon[i], Skycons.FOG);
 					break;
 				case "cloudy" :
-					iconsWhite.set("skycon_small", Skycons.CLOUDY);
+					skycons.set(skyconIcon[i], Skycons.CLOUDY);
 					break;
 				case "partly-cloudy-day" :
-					iconsWhite.set("skycon_small", Skycons.PARTLY_CLOUDY_DAY);
-					break;
+					skycons.set(skyconIcon[i], Skycons.PARTLY_CLOUDY_DAY);
+					break;					
 				case "partly-cloudy-night" :
-					iconsWhite.set(skyconId[i], Skycons.PARTLY_CLOUDY_NIGHT);
+					skycons.set(skyconIcon[i], Skycons.PARTLY_CLOUDY_NIGHT);
 					break;
 			}
 		}
 		
 	}
 
-
-
-// second ajax call to get geocode location
-
-function geocode(position) {
-
-	var lat = position.coords.latitude;
-	var lon = position.coords.longitude;
-
-	var request = new XMLHttpRequest();
-	var method = "GET";
-	var URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ lat + "," + lon + "&key=AIzaSyB4jBtDnM420ai_Bmg8lNnhoRZAn9B3sdc";
-
-	request.open(method, URL);
-	request.responseType = "json";
+// function showTemperature (data) {
 	
-	getLoc(request)
-	
-	request.onerror = function() {
-		console.log("error");
-	}
-
-	request.send();	
-}
-
-function getLoc(myRequest) {
-	myRequest.onload = function() {
-		var myLocation = myRequest.response;
-
-		// check if data load is successful
-		if (myRequest.status >= 200 && myRequest.status <= 400) {
-			// console.log(myLocation.results[0].address_components[3].long_name);
-			//display city name in HTML
-			cityName.innerHTML = myLocation.results[0].address_components[3].long_name;
-		} else {
-			console.log("error");
-		}		
-	}
-	
-}
-
-// var time = new Date().getTime();
-// var date = new Date(time);
-// console.log(time + "time");
+// }

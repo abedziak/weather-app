@@ -7,6 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style.css">
+		<script src="https://use.fontawesome.com/fe8b3ea96a.js"></script>
 		<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 		
  	</head>
@@ -16,8 +17,11 @@
 
 			<header>
 				<div id="header__city-name"></div>
-				<span id="header__author">Designed by Andrew Bedziak</span>
-				<span id="header__author-icon"><i></i></span>
+				<div id="current-date">Sat</div>
+				<span id="header__author">by Andrew Bedziak</span>
+				<span id="header__author-icon">
+					<a href="https://github.com/BedzOne"><i class="fa fa-github-alt" aria-hidden="false"></i></a>
+				</span>
 			</header>
 
 			<main role="main">
@@ -58,16 +62,16 @@
 				</div>
 				<div class="week-forecast">
 					<div class="week-forecast__icon">
-						<canvas id="skycon_small" width="32" height="32"></canvas>
+						<canvas id="skycon_small" width="40" height="32"></canvas>
 					</div>
 					<div class="week-forecast__temp"></div>
 					<div class="week-forecast__day"></div>
 				</div>
 				<div class="week-forecast">
-					<div class="week-forecast__temp"></div>
 					<div class="week-forecast__icon">
-						<canvas id="skycon_small" width="32" height="32"></canvas>
+						<canvas id="skycon_small" width="40" height="40"></canvas>
 					</div>
+					<div class="week-forecast__temp"></div>
 					<div class="week-forecast__day"></div>
 				</div>
 
