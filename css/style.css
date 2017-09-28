@@ -55,12 +55,13 @@ header {
     right: 0;
     font-size: 0.7em;
     padding-right: 1em;
-    padding-top: 0.2em; }
+    padding-top: 0.3em; }
   header #header__author-icon {
     font-size: 0.9em;
     top: 0.1em;
     left: 0.8em;
-    cursor: pointer; }
+    cursor: pointer;
+    padding-top: 0.2em; }
   header a {
     color: inherit; }
 

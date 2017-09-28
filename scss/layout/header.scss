@@ -20,7 +20,11 @@ header {
         right: 0;
         font-size: 0.7em;
         padding-right: 1em;
-        padding-top: 0.2em;
+        padding-top: 0.3em;
+    }
+
+    #header__author {
+
     }
 
     #header__author-icon {
@@ -28,6 +32,7 @@ header {
         top: 0.1em;
         left: 0.8em;
         cursor: pointer;
+        padding-top: 0.2em;
     }
 
     a {

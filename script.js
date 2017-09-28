@@ -102,7 +102,7 @@ function getLoc(myRequest) {
 	
 		// check if data load is successful
 		if (myRequest.status >= 200 && myRequest.status <= 400) {
-			// console.log(myLocation.results[0].address_components[3].long_name);
+			console.log(myLocation.results[0].address_components[3].long_name);
 
 			//display city name in HTML
 			cityName.innerHTML = myLocation.results[0].address_components[3].long_name;
@@ -171,7 +171,7 @@ function dailyWeather(dailyWeather) {
 			day[5] = "Fri";
 			day[6] = "Sat";
 			var newDay = day[d.getDay()];
-			weeklyForecastTemp[i].innerHTML = Math.round(dailyWeather.daily.data[i+1].temperatureHigh) + "º" + " / " + Math.round(dailyWeather.daily.data[i+1].temperatureLow) + "º";
+			weeklyForecastTemp[i].innerHTML = "<strong>" + Math.round(dailyWeather.daily.data[i+1].temperatureHigh) + "</strong>º" + " / <strong>" + Math.round(dailyWeather.daily.data[i+1].temperatureLow) + "</strong>º";
 			weeklyForecastDay[i].innerHTML = newDay;	
 	}
 }
