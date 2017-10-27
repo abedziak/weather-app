@@ -6,3 +6,68 @@
         width: 100vw;
     }
 }
+
+
+@media #{$landscape} {
+        #wrapper {
+            @include vp-flex-direction(row);
+            @include vp-flex-wrap($value: wrap);
+
+            main,
+            aside {
+                width: 50%;
+                height: 80%;
+            }
+
+            #main__temp {
+                align-items: baseline;
+                height: 52%;
+
+                #temp {
+                    font-size: 5em;
+                }
+            }
+
+            #main__icon {
+
+                #summary {
+                    padding-top: 0em;
+                }
+            }
+
+            #main__additional-info {
+                padding-top: 0.5em;
+            }
+
+
+            aside {
+
+                &::before {
+                    display: none;
+                }
+
+                .week-forecast {
+
+                    .week-forecast__icon,
+                    .week-forecast__temp,
+                    .week-forecast__day {
+                        padding-top: 1.5em;
+                    }
+
+                    .week-forecast__icon {
+                        height: 30%;
+                    }
+
+                    .week-forecast__temp {
+                        height: 35%;
+                    }
+
+                    .week-forecast__day {
+                        height: 0em;
+                    }
+                }
+            }
+        }
+
+
+}
