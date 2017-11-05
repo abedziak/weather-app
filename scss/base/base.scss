@@ -47,12 +47,7 @@ main {
     height: 60%;  
 
     #temp {
-        font-size: 4.2em;
-    }
-
-    span {
-        font-size: 1.8em;
-        height: 2em;
+        font-size: 3.8em;
     }
 }
 
@@ -63,6 +58,10 @@ main {
         padding-top: 1em;
         padding-bottom: 2em; 
         font-weight: 600;
+    }
+
+    canvas {
+        margin-bottom: 0.7em;
     }
 }
 
@@ -98,5 +97,16 @@ aside {
 
 svg path{
     fill: #fff;
+}
+
+.error {
+    background-image: url("../img/lightning-bolt.svg");
+    background-size: 100vw 100vh !important;
+    background-repeat: no-repeat;
+    color: $black;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 

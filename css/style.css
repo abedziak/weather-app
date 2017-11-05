@@ -106,10 +106,7 @@ main {
 #main__temp {
   height: 60%; }
   #main__temp #temp {
-    font-size: 4.2em; }
-  #main__temp span {
-    font-size: 1.8em;
-    height: 2em; }
+    font-size: 3.8em; }
 
 #main__icon {
   height: 30%; }
@@ -117,6 +114,8 @@ main {
     padding-top: 1em;
     padding-bottom: 2em;
     font-weight: 600; }
+  #main__icon canvas {
+    margin-bottom: 0.7em; }
 
 #main__additional-info {
   height: 10%; }
@@ -139,6 +138,16 @@ aside {
 
 svg path {
   fill: #fff; }
+
+.error {
+  background-image: url("../img/lightning-bolt.svg");
+  background-size: 100vw 100vh !important;
+  background-repeat: no-repeat;
+  color: #111;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 @media screen and (max-width: 600px) {
   body {
@@ -164,7 +173,9 @@ svg path {
       height: 80%; }
     #wrapper #main__temp {
       align-items: baseline;
-      height: 52%; }
+      height: 52%;
+      margin-bottom: 0.5em;
+      margin-left: 1.5em; }
       #wrapper #main__temp #temp {
         font-size: 5em; }
     #wrapper #main__icon #summary {
@@ -173,15 +184,12 @@ svg path {
       padding-top: 0.5em; }
     #wrapper aside::before {
       display: none; }
-    #wrapper aside .week-forecast .week-forecast__icon,
-    #wrapper aside .week-forecast .week-forecast__temp,
-    #wrapper aside .week-forecast .week-forecast__day {
-      padding-top: 1.5em; }
-    #wrapper aside .week-forecast .week-forecast__icon {
-      height: 30%; }
-    #wrapper aside .week-forecast .week-forecast__temp {
-      height: 35%; }
-    #wrapper aside .week-forecast .week-forecast__day {
-      height: 0em; } }
+    #wrapper aside .week-forecast {
+      height: 80%;
+      margin-top: 3em; }
+      #wrapper aside .week-forecast .week-forecast__icon {
+        height: 30%; }
+      #wrapper aside .week-forecast .week-forecast__temp {
+        height: 25%; } }
 
 /*# sourceMappingURL=style.css.map */

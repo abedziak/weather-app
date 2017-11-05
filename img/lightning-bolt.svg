@@ -1,0 +1,21 @@
+<?xml version="1.0"?><svg width="1020" height="970" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Lightning Bolt</title>
+ <defs>
+  <linearGradient id="linearGradient4140">
+   <stop stop-color="#ffffff" offset="0" id="stop4141"/>
+   <stop stop-color="#fffcfc" stop-opacity="0" offset="1" id="stop4142"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="-Infinity" xlink:href="#linearGradient4140" x2="0.498228" x1="0.498228" id="linearGradient1721"/>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <g transform="matrix(9.60195, 0, 0, 12.6657, -1367.95, -303.457)" id="svg_2">
+    <path fill="#ffffff" fill-rule="evenodd" stroke="#000000" stroke-width="0" stroke-linejoin="round" stroke-miterlimit="4" d="m223.607468,61.086948a30.5564,30.5564 0 1 1 -61.112808,0a30.5564,30.5564 0 1 1 61.112808,0z" id="svg_3"/>
+    <path opacity="0.788732" fill="#ffffff" fill-rule="evenodd" stroke="#ff8600" stroke-width="0" stroke-miterlimit="4" d="m207.949951,28.448549l-27.95639,28.481001l15.069382,0.526211l-23.910049,23.761723l10.127213,0.188934l-16.780518,18.538139l40.546555,-22.612526l-15.093185,0.159157l30.551697,-24.395588l-16.526062,-0.040649l27.152832,-25.366692l-23.181473,0.76029z" id="svg_4"/>
+    <path opacity="0.84507" fill="#ffffff" fill-rule="evenodd" stroke="url(#linearGradient1721)" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" marker-start="none" d="m210.939301,41.02766a17.669991,9.07905 0 1 1 -35.339996,0a17.669991,9.07905 0 1 1 35.339996,0z" id="svg_5"/>
+    <path fill="#ffffff" fill-rule="evenodd" stroke="#000000" stroke-width="0.48413596pt" d="m206.518234,26.239571l-27.956406,28.480988l15.069397,0.526222l-23.910034,23.761726l10.127197,0.188927l-16.780518,18.538147l40.546555,-22.612541l-15.093185,0.159164l30.551682,-24.395596l-16.526062,-0.040649l27.152832,-25.366688l-23.181458,0.7603z" id="svg_6"/>
+   </g>
+  </g>
+ </g>
+</svg>

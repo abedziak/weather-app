@@ -49,7 +49,7 @@ window.onload = function() {
 	getLocation();
 }
 
-// AJAX request function
+// AJAX request function - first call to Dark Sky API
 
 function getWeather(position) {
 
@@ -67,6 +67,8 @@ function getWeather(position) {
 	newRequest.responseType = "json";
 	
 	newRequest.onerror = function() {
+		wrapper.innerHTML = "Oops...Something went wrong!";
+		wrapper.classList.add("error");
 		console.log("error");
 	}
 
@@ -102,15 +104,12 @@ function getLoc(myRequest) {
 	
 		// check if data load is successful
 		if (myRequest.status >= 200 && myRequest.status <= 400) {
-			// console.log(myLocation.results[0].address_components[3].long_name);
-
 			//display city name in HTML
 			cityName.innerHTML = myLocation.results[0].address_components[3].long_name;
 		} else {
 			console.log("error");
 		}		
-	}
-		
+	}		
 }
 
 // function to load data from DARK SKY API
@@ -119,7 +118,7 @@ function getData(request) {
 
 	request.onload = function() {
 		var newWeather = request.response;
-		// console.log(newWeather);
+		console.log(newWeather);
 		// check if data load is successful
 
 		if (request.status >= 200 && request.status <= 400) {
@@ -137,8 +136,7 @@ function getData(request) {
 // function to display data to HTML
 
 function displayCurrentWeather(weather) {
-
-	temperature.innerHTML = Math.floor(weather.currently.temperature);
+	temperature.innerHTML = Math.floor(weather.currently.temperature) + "°";
 	wind.innerHTML = "<span>Wind: <strong>" + weather.currently.windSpeed + "</strong> mph</span>";
 	pressure.innerHTML = "<span>Pressure: <strong>" + Math.floor(weather.currently.pressure) + " </strong>mbar</span>";
 	var d = new Date();
@@ -177,7 +175,7 @@ function dailyWeather(dailyWeather) {
 }
 
 //function to set different backgrounds, summary and icons depending on weather 
-	// have set default icons
+	// have to set default icons
 
 function setWeatherData (data) {
 
@@ -294,7 +292,6 @@ function setWeatherData (data) {
 //function to set icons in DAILY forecast //
 
 function setDailyIcons (dayWeather) {
-		// console.log(dayWeather.daily.data)
 		for (var i = 0; i < skyconIcon.length; i++) {
 			switch (dayWeather.daily.data[i+1].icon) {
 				case "clear-day" :
@@ -332,6 +329,3 @@ function setDailyIcons (dayWeather) {
 		
 	}
 
-// function showTemperature (data) {
-	
-// }
