@@ -21,10 +21,6 @@ var skycons = new Skycons({"color": "white"});
 
 skycons.play();
 
-//lock screen orientation to portrait
-
-// screen.lockOrientation("landscape");
-
 // Functions to get geolocation and check if supported
 
 function getLocation () {
