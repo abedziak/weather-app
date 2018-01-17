@@ -1,7 +1,5 @@
 # weather-app
-Weather Application - FreeCodeCamp project - made using Dark Sky API
-
-This is another project from a FreeCodeCamp website which utilizes Ajax methods. This is my first project in which I used Sass to modulirize and write my CSS, even though the CSS is very small. The design is very minimalistic and influenced by other mobile weather applications.
+Weather Application - made using Dark Sky API
 
 I used vanilla Javascript to make API calls to Google Geocode API and Dark Sky API.
 
